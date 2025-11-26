@@ -11,6 +11,8 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 
 
+st.balloons()
+
 ##################
 ## tamaño del plot
 ################## 
