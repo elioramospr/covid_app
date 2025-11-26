@@ -50,15 +50,15 @@ columna = st.sidebar.selectbox("Columna de interés:",nombres)
 ## indicar si se quiere suavizar
 ################################ 
 
-suavizado = st.sidebar.checkbox("Suavizado")
+#suavizado = st.sidebar.checkbox("Suavizado")
+
+
 
 #####################################
 ## indicar si se quiere mostrar tabla
 ##################################### 
 
 tabla = st.sidebar.checkbox("Mostrar datos")
-
-st.sidebar.divider()
 
 
 # df_covid.plot(x="date",y=columna,ax=ax,
@@ -91,6 +91,10 @@ col1,col2 = st.columns(2)
 ## si se selecciono suavizado
 ############################# 
 
+suavizado = st.sidebar.checkbox("Suavizado")
+
+
+
 if suavizado:
     ventana = st.sidebar.slider("Ventana de suavizado [días]",1,15,7)
     df_rolling =  df_covid[columna].rolling(ventana,center=True).mean()  
@@ -99,9 +103,8 @@ if suavizado:
     fig2 = px.line(df_covid,x="date",y=columna+"_rolling")
     fig2.update_traces(line_color='orange')
     fig1.add_traces(list(fig2.select_traces()))
-    st.sidebar.divider()
 
-
+st.sidebar.divider()
 
 col1.plotly_chart(fig1)
 
